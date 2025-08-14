@@ -14,9 +14,8 @@ const EXCLUDE = new Set([
   "project",
   "pwd-manager-backend",
   "pwd-manager-frontend",
-  // Exclude academic thesis repos from portfolio
   "bachelor-thesis",
-  "bachelor_thesis",
+  "portfolio",
 ]);
 
 function byName(name: string) {
