@@ -26,7 +26,7 @@ Visit the live portfolio: [abdellah-elhalimi.vercel.app](https://abdellah-elhali
 ## 📱 Mobile Responsiveness
 
 - Compact navbar with smaller brand text on mobile
-- Icon-only GitHub buttons on mobile devices  
+- Icon-only GitHub buttons on mobile devices
 - Responsive project grid layout
 - Touch-friendly interface design
 
@@ -52,17 +52,20 @@ Visit the live portfolio: [abdellah-elhalimi.vercel.app](https://abdellah-elhali
 ## 🚀 Getting Started
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/AbdellahElh/portfolio.git
    cd portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -75,20 +78,26 @@ Visit the live portfolio: [abdellah-elhalimi.vercel.app](https://abdellah-elhali
 ## 📦 Key Components
 
 ### ProjectCard
+
 Displays GitHub projects with:
+
 - Project descriptions and metadata
 - Technology tags
 - GitHub and live preview links
 - Mobile-responsive button layout
 
-### CertificateCard  
+### CertificateCard
+
 Shows professional certifications with:
+
 - Credential information
 - PDF download functionality
 - External verification links
 
 ### Header
+
 Navigation component featuring:
+
 - Responsive brand text
 - Smooth scroll navigation
 - Mobile-optimized GitHub button
@@ -96,6 +105,7 @@ Navigation component featuring:
 ## 🎨 Customization
 
 The portfolio is highly customizable through:
+
 - `src/lib/github.ts` - Project data and descriptions
 - `tailwind.config.mjs` - Color schemes and styling
 - `src/components/` - Component modifications

@@ -44,7 +44,7 @@ export async function fetchRepos(): Promise<Repo[]> {
         case "pwd-manager":
           enhanced.name = "Password Manager (Full Stack)";
           enhanced.description =
-            "A web-based password manager featuring face authentication instead of traditional master passwords. Built with modern security practices and accessibility in mind, this full-stack application provides secure password storage with biometric authentication.";
+            "A web-based password manager featuring face authentication instead of traditional master passwords. Built with modern security practices and accessibility in mind, this full-stack application provides secure password storage with biometric authentication and and served as the proof of concept for evaluating my bachelor’s thesis";
           enhanced.technologies = [
             "TypeScript",
             "Node.js",
