@@ -1,0 +1,27 @@
+---
+const { title = 'Abdellah El Halimi | Full-Stack Developer', description = 'Fast, accessible portfolio powered by Astro + Tailwind' } = Astro.props;
+---
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://abdellah-elhalimi.vercel.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style is:global>@import '../styles/global.css';</style>
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <slot />
+      <footer class="mt-20 border-t border-slate-200/60 dark:border-slate-800 pt-8 text-sm text-slate-500">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <p>© {new Date().getFullYear()} Abdellah El Halimi</p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

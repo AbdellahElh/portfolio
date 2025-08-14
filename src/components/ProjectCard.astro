@@ -1,0 +1,66 @@
+---
+import { IconExternal, iconForLanguage, IconGithub } from './icons';
+const { name, description, topics = [], html_url, homepage, language, technologies = [], extraLinks = [] } = Astro.props;
+---
+<article class="group rounded-2xl border border-slate-200/60 dark:border-slate-800 p-5 hover:shadow-sm transition flex flex-col h-full">
+  <div class="flex items-start justify-between gap-3">
+    <h3 class="text-lg font-semibold tracking-tight">{name}</h3>
+    <span class="inline-flex items-center justify-center w-6 h-6" title={language || '—'} set:html={iconForLanguage(language, { cls: 'w-6 h-6' })}></span>
+  </div>
+
+  <div class="flex-1">
+    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{description || 'No description available.'}</p>
+
+    {technologies.length > 0 && (
+      <div class="mt-3">
+        <h4 class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Technologies</h4>
+        <div class="flex flex-wrap gap-1">
+          {technologies.map((tech) => (
+            <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800">{tech}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {extraLinks.length > 0 && (
+      <ul class="mt-3 flex flex-wrap gap-2 text-sm">
+        {extraLinks.map((l) => (
+          <li><a class="underline underline-offset-4 hover:no-underline" href={l.href} target="_blank" rel="noreferrer">{l.label}</a></li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="flex flex-wrap gap-2 text-xs">
+        {topics && topics.slice(0, 4).map((t) => (
+          <span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 text-slate-600 dark:text-slate-300">#{t}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-auto pt-4 flex gap-2">
+    <a 
+      href={html_url} 
+      target="_blank" 
+      rel="noreferrer" 
+      class="flex items-center gap-2 px-3 py-2 text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors border border-slate-200/60 dark:border-slate-700"
+      title="View on GitHub"
+    >
+      <span set:html={IconGithub()}></span>
+      <span class="hidden sm:inline">GitHub</span>
+    </a>
+    {homepage && (
+      <a 
+        href={homepage} 
+        target="_blank" 
+        rel="noreferrer" 
+        class="flex items-center gap-2 px-3 py-2 text-sm bg-green-100 dark:bg-green-900/20 hover:bg-green-200 dark:hover:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg transition-colors border border-green-200/60 dark:border-green-800"
+        title="Live Preview"
+      >
+        <span set:html={IconExternal()}></span>
+        Preview
+      </a>
+    )}
+  </div>
+</article>

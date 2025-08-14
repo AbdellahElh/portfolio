@@ -1,0 +1,84 @@
+---
+import { IconGithub, IconLinkedIn } from './icons';
+const { email = 'e.abdellah.merroun@gmail.com', linkedin = 'https://www.linkedin.com/in/abdellah-el-halimi-375390314/', github = 'https://github.com/AbdellahElh' } = Astro.props;
+---
+
+<header class="mb-12">
+  <div class="fixed inset-x-0 top-0 z-50 bg-white/80 dark:bg-slate-950/70 backdrop-blur border-b border-slate-200/60 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6 py-3">
+    <a href="/" class="font-display text-lg sm:text-2xl font-bold tracking-tight">Abdellah <span class="text-sky-600">El Halimi</span></a>
+    <nav class="flex items-center gap-4 text-sm">
+      <a href="#projects" data-section="projects" class="nav-link hover:underline">Projects</a>
+      <a href="#certs" data-section="certs" class="nav-link hover:underline">Certificates</a>
+      <a href="#about" data-section="about" class="nav-link hover:underline">About</a>
+      <a href="#contact" data-section="contact" class="nav-link hover:underline">Contact</a>
+      <a
+        href={github}
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 border border-transparent dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+        target="_blank" rel="noreferrer" aria-label="GitHub profile"
+        title="GitHub"
+      >
+        <span set:html={IconGithub()}></span>
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </nav>
+    </div>
+  </div>
+  <div class="mt-24 grid md:grid-cols-[1fr_auto] gap-6 items-start">
+    <div>
+      <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Dedicated Full-Stack Developer</h1>
+      <p class="mt-3 text-slate-600 dark:text-slate-300 max-w-2xl">I'm Abdellah El Halimi, a dedicated full-stack developer studying at HoGent, specializing in Mobile & Enterprise Development. I build fast, accessible web and mobile apps with modern tools like TypeScript, Java, .NET, and React.</p>
+      <div class="mt-6 flex gap-3">
+        <a href="#projects" class="px-4 py-2 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-500">See my work</a>
+        <a href={linkedin} class="px-4 py-2 rounded-xl border border-slate-200/60 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 inline-flex items-center gap-2" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn profile">
+          <span set:html={IconLinkedIn()}></span>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    const sectionIds = ["projects", "certs", "about", "contact"]; 
+    const links = Array.from(document.querySelectorAll('nav a.nav-link'));
+
+    function setActive(id) {
+      links.forEach(l => {
+        const isActive = l.getAttribute('href') === `#${id}`;
+        l.classList.toggle('text-sky-600', isActive);
+        l.classList.toggle('font-semibold', isActive);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible && visible.target && visible.target.id) {
+        setActive(visible.target.id);
+      }
+    }, {
+      root: null,
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    });
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const initial = sectionIds.find(id => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return rect.top <= vh * 0.4 && rect.bottom >= vh * 0.3;
+    }) || sectionIds[0];
+    setActive(initial);
+
+    window.addEventListener('hashchange', () => setActive(location.hash.replace('#','')));
+  });
+</script>
